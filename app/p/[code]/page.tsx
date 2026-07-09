@@ -4,6 +4,8 @@ import { MessageCircle } from 'lucide-react';
 
 import { fetchProductByCode, getCoverImage, getProductDisplayPrice } from '../../../lib/supabase';
 
+export const revalidate = 3600;
+
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hezhin.app').replace(/\/$/, '');
 const businessWhatsapp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '9647507852926';
 
