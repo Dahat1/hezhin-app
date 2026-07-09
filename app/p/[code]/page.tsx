@@ -4,7 +4,7 @@ import { MessageCircle } from 'lucide-react';
 
 import { fetchProductByCode, getCoverImage, getProductDisplayPrice } from '../../../lib/supabase';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hezhin.app';
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hezhin.app').replace(/\/$/, '');
 const businessWhatsapp = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP || '9647507852926';
 
 type ProductPreviewPageProps = {
@@ -18,8 +18,27 @@ function formatPrice(value: number | null) {
   return `${value.toLocaleString('en-US')} IQD`;
 }
 
+function buildProductUrl(code: string) {
+  return `${siteUrl}/p/${encodeURIComponent(code)}`;
+}
+
+function buildOgImageUrl(code: string) {
+  return `${siteUrl}/og/${encodeURIComponent(code)}`;
+}
+
 function buildWhatsAppLink(code: string) {
-  const message = encodeURIComponent(`Hello Hezhin, I want to ask about product ${code}.\n\n${siteUrl}/p/${code}`);
+  const productUrl = buildProductUrl(code);
+
+  const message = encodeURIComponent(
+    [
+      'Hello Hezhin,',
+      '',
+      `I want to ask about product ${code}.`,
+      '',
+      productUrl,
+    ].join('\n')
+  );
+
   return `https://wa.me/${businessWhatsapp}?text=${message}`;
 }
 
@@ -34,13 +53,14 @@ export async function generateMetadata({ params }: ProductPreviewPageProps): Pro
     };
   }
 
-  const imageUrl = getCoverImage(product);
   const price = formatPrice(getProductDisplayPrice(product));
   const title = `Hezhin - ${product.code}`;
   const description = price
     ? `${product.code} · ${price} · Open product preview on Hezhin.`
     : `${product.code} · Open product preview on Hezhin.`;
-  const productUrl = `${siteUrl}/p/${product.code}`;
+
+  const productUrl = buildProductUrl(product.code);
+  const ogImageUrl = buildOgImageUrl(product.code);
 
   return {
     title,
@@ -51,22 +71,20 @@ export async function generateMetadata({ params }: ProductPreviewPageProps): Pro
       url: productUrl,
       siteName: 'Hezhin',
       type: 'website',
-      images: imageUrl
-        ? [
-            {
-              url: imageUrl,
-              width: 1200,
-              height: 1200,
-              alt: `${product.code} product photo`,
-            },
-          ]
-        : [],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${product.code} product preview`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: imageUrl ? [imageUrl] : [],
+      images: [ogImageUrl],
     },
   };
 }
@@ -86,7 +104,15 @@ export default async function ProductPreviewPage({ params }: ProductPreviewPageP
     <main className="product-page">
       <article className="product-shell">
         {imageUrl ? (
-          <img className="product-image" src={imageUrl} alt={`${product.code} product photo`} />
+          <img
+            className="product-image"
+            src={imageUrl}
+            alt={`${product.code} product photo`}
+            style={{
+              objectFit: 'contain',
+              backgroundColor: '#171313',
+            }}
+          />
         ) : null}
 
         <div className="product-content">
