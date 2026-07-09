@@ -22,10 +22,6 @@ function buildProductUrl(code: string) {
   return `${siteUrl}/p/${encodeURIComponent(code)}`;
 }
 
-function buildOgImageUrl(code: string) {
-  return `${siteUrl}/og/${encodeURIComponent(code)}`;
-}
-
 function buildWhatsAppLink(code: string) {
   const productUrl = buildProductUrl(code);
 
@@ -53,6 +49,7 @@ export async function generateMetadata({ params }: ProductPreviewPageProps): Pro
     };
   }
 
+  const imageUrl = getCoverImage(product);
   const price = formatPrice(getProductDisplayPrice(product));
   const title = `Hezhin - ${product.code}`;
   const description = price
@@ -60,7 +57,6 @@ export async function generateMetadata({ params }: ProductPreviewPageProps): Pro
     : `${product.code} · Open product preview on Hezhin.`;
 
   const productUrl = buildProductUrl(product.code);
-  const ogImageUrl = buildOgImageUrl(product.code);
 
   return {
     title,
@@ -71,20 +67,22 @@ export async function generateMetadata({ params }: ProductPreviewPageProps): Pro
       url: productUrl,
       siteName: 'Hezhin',
       type: 'website',
-      images: [
-        {
-          url: ogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: `${product.code} product preview`,
-        },
-      ],
+      images: imageUrl
+        ? [
+            {
+              url: imageUrl,
+              width: 1200,
+              height: 1200,
+              alt: `${product.code} product photo`,
+            },
+          ]
+        : [],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [ogImageUrl],
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
@@ -104,15 +102,7 @@ export default async function ProductPreviewPage({ params }: ProductPreviewPageP
     <main className="product-page">
       <article className="product-shell">
         {imageUrl ? (
-          <img
-            className="product-image"
-            src={imageUrl}
-            alt={`${product.code} product photo`}
-            style={{
-              objectFit: 'contain',
-              backgroundColor: '#171313',
-            }}
-          />
+          <img className="product-image" src={imageUrl} alt={`${product.code} product photo`} />
         ) : null}
 
         <div className="product-content">
