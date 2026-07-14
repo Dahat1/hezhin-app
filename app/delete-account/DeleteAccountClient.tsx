@@ -175,9 +175,35 @@ export default function DeleteAccountClient() {
             <p style={styles.kicker}>ACCOUNT & PRIVACY</p>
             <h1 style={styles.title}>Delete your account</h1>
             <p style={styles.intro}>
-              Sign in with the same phone number and password you use in the Hezhin app.
-              Your account will not be deleted until you review the account details and confirm.
+              Sign in with the phone number and password linked to your Hezhin account.
+              After your identity is verified, you can review the account and permanently delete it.
             </p>
+
+            <div style={styles.policyPanel}>
+              <h2 style={styles.panelTitle}>How account deletion works</h2>
+              <ol style={styles.policyList}>
+                <li>Enter the phone number and password linked to your Hezhin account.</li>
+                <li>Review the account details shown after sign-in.</li>
+                <li>Type YES and confirm permanent deletion.</li>
+              </ol>
+
+              <h2 style={styles.panelTitle}>Data permanently deleted</h2>
+              <ul style={styles.policyList}>
+                <li>Customer profile and authentication account</li>
+                <li>Saved delivery addresses and address notes</li>
+                <li>Favorite products</li>
+                <li>Notification preferences and push-notification tokens</li>
+                <li>Personal Notification Center records</li>
+              </ul>
+
+              <h2 style={styles.panelTitle}>Limited data retention</h2>
+              <p style={styles.panelText}>
+                Hezhin may retain only limited records when required by applicable law, for security
+                and fraud prevention, dispute resolution, or legitimate accounting and business
+                recordkeeping. Any retained records are kept only for the legally required or
+                reasonably necessary period and are not used to recreate the deleted account.
+              </p>
+            </div>
 
             <form onSubmit={signIn} style={styles.form}>
               <label style={styles.label} htmlFor="phone">
@@ -212,12 +238,7 @@ export default function DeleteAccountClient() {
                 {loading ? 'Signing in...' : 'Sign in securely'}
               </button>
             </form>
-
-            <div style={styles.infoBox}>
-              <strong>Security:</strong> A phone number alone is not enough. The correct account
-              password is required before the deletion option becomes available.
-            </div>
-          </>
+</>
         ) : null}
 
         {step === 'confirm' && profile ? (
@@ -390,6 +411,32 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: 16,
     lineHeight: 1.75,
     margin: '0 0 24px',
+  },
+  policyPanel: {
+    border: '1px solid rgba(213, 161, 92, 0.23)',
+    background: 'rgba(213, 161, 92, 0.06)',
+    borderRadius: 18,
+    padding: '16px 17px',
+    marginBottom: 22,
+  },
+  panelTitle: {
+    color: '#F5D7A3',
+    fontSize: 14,
+    fontWeight: 900,
+    margin: '0 0 7px',
+  },
+  panelText: {
+    color: '#D8C5BC',
+    fontSize: 13,
+    lineHeight: 1.7,
+    margin: '0 0 14px',
+  },
+  policyList: {
+    color: '#D8C5BC',
+    fontSize: 13,
+    lineHeight: 1.7,
+    paddingLeft: 20,
+    margin: '0 0 16px',
   },
   form: {
     display: 'grid',
