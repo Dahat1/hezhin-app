@@ -71,7 +71,7 @@ export default function DeleteAccountClient() {
     setError('');
 
     if (!isValidIraqPhoneNumber(phone)) {
-      setError('Enter a valid Iraqi phone number.');
+      setError('Enter the phone number linked to your Hezhin account.');
       return;
     }
 
@@ -89,7 +89,7 @@ export default function DeleteAccountClient() {
 
     if (signInError || !data.user) {
       setLoading(false);
-      setError('The phone number or password is incorrect.');
+      setError('We couldn’t sign in with these details. Check your phone number and password.');
       return;
     }
 
@@ -181,13 +181,13 @@ export default function DeleteAccountClient() {
 
             <form onSubmit={signIn} style={styles.form}>
               <label style={styles.label} htmlFor="phone">
-                Phone number
+                Account phone number
               </label>
               <input
                 id="phone"
                 value={phone}
                 onChange={(event) => setPhone(event.target.value)}
-                placeholder="0750 000 0000"
+                placeholder="07XX XXX XXXX"
                 inputMode="tel"
                 autoComplete="tel"
                 style={styles.input}
@@ -423,16 +423,6 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 900,
     marginTop: 12,
     cursor: 'pointer',
-  },
-  infoBox: {
-    marginTop: 22,
-    border: '1px solid rgba(213, 161, 92, 0.24)',
-    background: 'rgba(213, 161, 92, 0.08)',
-    borderRadius: 14,
-    color: '#D8C5BC',
-    padding: '14px 15px',
-    fontSize: 13,
-    lineHeight: 1.65,
   },
   error: {
     border: '1px solid rgba(218, 108, 119, 0.34)',
