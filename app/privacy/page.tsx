@@ -66,11 +66,28 @@ export default function PrivacyPage() {
           business, security, or recordkeeping purposes.
         </p>
 
+
+        <h2 style={styles.heading}>Account deletion</h2>
+        <p style={styles.text}>
+          Signed-in customers can permanently delete their account inside the Hezhin mobile
+          application from Profile → Account &amp; Privacy → Delete account. Account deletion removes
+          the customer authentication account, profile, saved delivery addresses, favorite products,
+          notification preferences, registered push-notification tokens, and personal Notification
+          Center records associated with the account.
+        </p>
+        <p style={styles.text}>
+          Account deletion instructions and an external request option are available at:{' '}
+          <a style={styles.link} href="/delete-account">
+            hezhin.app/delete-account
+          </a>
+        </p>
+
         <h2 style={styles.heading}>Your choices</h2>
         <p style={styles.text}>
           You may update your profile information in the app, manage saved addresses, remove
-          favorites, disable notifications, or request help with account information by contacting
-          us. You may also control app permissions from your device settings.
+          favorites, disable notifications, permanently delete your account, or request help with
+          account information by contacting us. You may also control app permissions from your
+          device settings.
         </p>
 
         <h2 style={styles.heading}>Children</h2>
