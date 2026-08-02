@@ -1,71 +1,40 @@
-export const metadata = {
-  title: 'Support | Hezhin',
-  description: 'Support information for the Hezhin mobile application.',
-};
+import type { Metadata } from 'next';
+import { Bell, CircleHelp, Mail, MessageCircle, ShieldCheck, Smartphone } from 'lucide-react';
+import { PageShell } from '../../components/PageShell';
+import { StoreButtons } from '../../components/StoreButtons';
+import { buildWhatsAppUrl, supportEmail } from '../../lib/site';
+
+export const metadata: Metadata = { title: 'Support', description: 'Support information for the Hezhin mobile application.' };
+
+const whatsappUrl = buildWhatsAppUrl('Hello Hezhin, I need help with the Hezhin app.');
 
 export default function SupportPage() {
   return (
-    <main style={styles.page}>
-      <section style={styles.card}>
-        <p style={styles.kicker}>Hezhin</p>
-        <h1 style={styles.title}>Support</h1>
-        <p style={styles.text}>
-          Need help with the Hezhin app, your account, product inquiries, favorites, or delivery information?
-          Contact support and we will help you as soon as possible.
-        </p>
-        <p style={styles.text}>
-          Email: <a style={styles.link} href="mailto:dahatdev@gmail.com">dahatdev@gmail.com</a>
-        </p>
-        <p style={styles.footer}>© 2026 Hezhin Boutique. All rights reserved.</p>
+    <PageShell>
+      <section className="legal-card support-hero">
+        <p className="eyebrow">HELP CENTER</p>
+        <h1>How can we help?</h1>
+        <p className="lead">Get help with your account, notifications, favorites, products, WhatsApp inquiries, or the Hezhin app.</p>
+        <div className="support-actions">
+          {whatsappUrl ? <a className="primary-action" href={whatsappUrl} target="_blank" rel="noreferrer"><MessageCircle size={20}/> WhatsApp Support</a> : null}
+          <a className="secondary-action" href={`mailto:${supportEmail}`}><Mail size={20}/> Email Support</a>
+        </div>
       </section>
-    </main>
+
+      <section className="support-grid">
+        <article><Smartphone /><h2>App and account</h2><p>Sign-in, profile, saved addresses, favorites and account access.</p></article>
+        <article><Bell /><h2>Notifications</h2><p>Permission, language preferences and notification settings.</p></article>
+        <article><MessageCircle /><h2>Product inquiries</h2><p>Open a product in the app and use the WhatsApp button to contact Hezhin.</p></article>
+        <article><ShieldCheck /><h2>Privacy and deletion</h2><p>Read our policy or permanently delete your customer account.</p><a href="/delete-account">Delete account →</a></article>
+      </section>
+
+      <section className="legal-card faq-card">
+        <div className="faq-heading"><CircleHelp size={24}/><h2>Frequently asked questions</h2></div>
+        <details><summary>Can I order inside the app?</summary><p>Hezhin currently handles product inquiries and order discussions through WhatsApp.</p></details>
+        <details><summary>How do I change the app language?</summary><p>Open the menu in the Hezhin app and select English, Kurdish, or Arabic.</p></details>
+        <details><summary>How do I delete my account?</summary><p>Use Profile → Account & Privacy → Delete account, or use our external deletion page.</p></details>
+        <StoreButtons compact />
+      </section>
+    </PageShell>
   );
 }
-
-const styles: Record<string, React.CSSProperties> = {
-  page: {
-    minHeight: '100vh',
-    background: 'linear-gradient(180deg, #160000 0%, #2A0B11 55%, #160000 100%)',
-    color: '#FFF7F1',
-    padding: '34px 18px',
-    fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-  },
-  card: {
-    maxWidth: 760,
-    margin: '0 auto',
-    background: 'rgba(255, 247, 241, 0.065)',
-    border: '1px solid rgba(255, 247, 241, 0.16)',
-    borderRadius: 30,
-    padding: '38px 24px',
-    boxShadow: '0 24px 80px rgba(0, 0, 0, 0.35)',
-  },
-  kicker: {
-    color: '#D8A15F',
-    fontSize: 13,
-    fontWeight: 900,
-    letterSpacing: 2.2,
-    textTransform: 'uppercase',
-    margin: 0,
-  },
-  title: {
-    fontSize: 42,
-    lineHeight: 1.05,
-    margin: '10px 0 16px',
-    fontWeight: 950,
-  },
-  text: {
-    color: '#E6D5CD',
-    fontSize: 17,
-    lineHeight: 1.75,
-    marginBottom: 18,
-  },
-  link: {
-    color: '#D8A15F',
-    fontWeight: 900,
-  },
-  footer: {
-    color: '#BFAEAA',
-    fontSize: 13,
-    marginTop: 34,
-  },
-};
