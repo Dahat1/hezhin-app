@@ -661,8 +661,8 @@ html[lang='ku'] .hero-copy h1 {
 }
 .promo-image-qr {
   position: absolute;
-  left: 38%;
-  top: 5%;
+  left: 35%;
+  top: 8%;
   width: 25%;
   aspect-ratio: 1;
   display: grid;
@@ -671,7 +671,7 @@ html[lang='ku'] .hero-copy h1 {
   overflow: hidden;
   background: #fff;
   box-shadow: 0 5px 18px rgba(0, 0, 0, .22);
-  z-index: 2;
+  z-index: 5;
 }
 .promo-image-qr svg {
   display: block;
