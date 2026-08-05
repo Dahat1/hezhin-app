@@ -70,16 +70,33 @@ export function HomeContent() {
     <main className="home-shell">
       <section className="promo-hero" aria-label="Download the Hezhin application">
         <div className="promo-visual">
-          <Image
-            src="/app/hezhin-kiosk-promo.jpeg"
-            alt="Hezhin application promotion"
-            width={1024}
-            height={1536}
-            priority
-            quality={95}
-            sizes="(max-width: 720px) calc(100vw - 24px), min(78vw, 680px)"
-            className="promo-image"
-          />
+          <div className="promo-image-frame">
+            <Image
+              src="/app/hezhin.png"
+              alt="Hezhin application promotion"
+              width={1024}
+              height={1536}
+              priority
+              quality={95}
+              sizes="(max-width: 720px) calc(100vw - 24px), min(78vw, 680px)"
+              className="promo-image"
+            />
+
+            <a
+              className="promo-image-qr"
+              href="/download"
+              aria-label="Download Hezhin"
+            >
+              <QRCodeSVG
+                value={downloadUrl}
+                size={256}
+                bgColor="#ffffff"
+                fgColor="#171014"
+                level="M"
+                includeMargin
+              />
+            </a>
+          </div>
         </div>
 
         <div className="promo-download-dock" id="download">
