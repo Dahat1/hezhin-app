@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Heart, Languages, MessageCircle, ShieldCheck, Sparkles, Zap, Smartphone, ArrowRight } from 'lucide-react';
+import { Heart, Languages, MessageCircle, Sparkles, Zap, Smartphone } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { StoreButtons } from './StoreButtons';
 import { useSitePreferences } from './SitePreferences';
@@ -68,33 +68,25 @@ export function HomeContent() {
 
   return (
     <main className="home-shell">
-      <section className="hero-section">
-        <div className="hero-copy">
-          <p className="eyebrow">{t.eyebrow}</p>
-          <h1>{t.title}</h1>
-          <p className="hero-lead">{t.lead}</p>
-          <StoreButtons />
-          <div className="hero-trust">
-            <span><ShieldCheck size={17} /> {t.official}</span>
-            <span><Languages size={17} /> {t.languages}</span>
-          </div>
+      <section className="promo-hero" aria-label="Download the Hezhin application">
+        <div className="promo-visual">
+          <Image
+            src="/app/hezhin-kiosk-promo.jpeg"
+            alt="Hezhin application promotion"
+            width={1024}
+            height={1536}
+            priority
+            quality={95}
+            sizes="(max-width: 720px) calc(100vw - 24px), min(78vw, 680px)"
+            className="promo-image"
+          />
         </div>
 
-        <div className="phone-stage" aria-label="Hezhin app preview">
-          <div className="showcase-glow" />
-          <div className="phone-frame phone-frame-real">
-            <div className="phone-screen">
-              <Image
-                src="/app/hezhin-home-dark.jpeg"
-                alt="Hezhin mobile application home screen"
-                width={860}
-                height={2048}
-                priority
-                sizes="(max-width: 620px) 88vw, 340px"
-                className="phone-screen-image"
-              />
-            </div>
-          </div>
+        <div className="promo-download-dock" id="download">
+          <a className="promo-qr" href="/download" aria-label="Download Hezhin">
+            <QRCodeSVG value={downloadUrl} size={154} bgColor="#ffffff" fgColor="#171014" />
+          </a>
+          <StoreButtons compact />
         </div>
       </section>
 
@@ -120,18 +112,6 @@ export function HomeContent() {
         </div>
       </section>
 
-      <section className="download-panel" id="download">
-        <div>
-          <p className="eyebrow">{t.downloadEyebrow}</p>
-          <h2>{t.downloadTitle}</h2>
-          <p>{t.downloadBody}</p>
-          <StoreButtons compact />
-        </div>
-        <a className="qr-card" href="/download" aria-label="Open Hezhin download page">
-          <QRCodeSVG value={downloadUrl} size={132} bgColor="transparent" fgColor="currentColor" />
-          <span>{t.scan}</span><ArrowRight size={18}/>
-        </a>
-      </section>
     </main>
   );
 }
