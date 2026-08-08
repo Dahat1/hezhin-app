@@ -56,7 +56,7 @@ export function SiteFooter() {
       </div>
       <div className="site-footer-bottom">
         <span>© 2026 {t.brand}. {t.rights}</span>
-        <span className="footer-powered">{t.powered} <a href="mailto:dahatdev@gmail.com">Dahat Dev</a></span>
+        <span className="footer-powered">{t.powered} <a href="mailto:info@dahat.dev">Dahat</a></span>
       </div>
     </footer>
   );

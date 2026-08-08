@@ -686,3 +686,24 @@ html[lang='ku'] .hero-copy h1 {
 @media (max-width: 620px) {
   .promo-image-frame { width: min(100%, 560px); }
 }
+
+/* Download fallback: keeps store actions available when social in-app browsers block auto redirects. */
+.download-fallback-card {
+  text-align: center;
+}
+.download-fallback-card .lead {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.download-fallback-card .store-actions {
+  justify-content: center;
+  margin-top: 24px;
+}
+.download-browser-note {
+  max-width: 560px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}

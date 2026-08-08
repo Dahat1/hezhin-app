@@ -327,8 +327,8 @@ export default function DeleteAccountClient() {
 
         <p style={styles.footer}>
           Need help?{' '}
-          <a style={styles.link} href="mailto:dahatdev@gmail.com">
-            dahatdev@gmail.com
+          <a style={styles.link} href="mailto:info@dahat.dev">
+            info@dahat.dev
           </a>
           <br />
           © 2026 Hezhin Boutique. All rights reserved.

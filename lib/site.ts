@@ -4,7 +4,7 @@ export const appStoreUrl =
 export const googlePlayUrl =
   process.env.NEXT_PUBLIC_GOOGLE_PLAY_URL ||
   'https://play.google.com/store/apps/details?id=com.dahat.hezhin';
-export const supportEmail = process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'dahatdev@gmail.com';
+export const supportEmail = 'info@dahat.dev';
 
 export function getBusinessWhatsAppPhone() {
   const value = process.env.NEXT_PUBLIC_BUSINESS_WHATSAPP?.replace(/[^0-9]/g, '');

@@ -19,14 +19,14 @@ function GooglePlayMark() {
   );
 }
 
-export function StoreButtons({ compact = false }: { compact?: boolean }) {
+export function StoreButtons({ compact = false, sameWindow = false }: { compact?: boolean; sameWindow?: boolean }) {
   return (
     <div className={`store-actions${compact ? ' compact' : ''}`}>
-      <a className="store-button store-button-official" href={appStoreUrl} target="_blank" rel="noreferrer" aria-label="Download Hezhin on the App Store">
+      <a className="store-button store-button-official" href={appStoreUrl} target={sameWindow ? undefined : '_blank'} rel={sameWindow ? undefined : 'noreferrer'} aria-label="Download Hezhin on the App Store">
         <AppleMark />
         <span><small>Download on the</small><strong>App Store</strong></span>
       </a>
-      <a className="store-button store-button-official" href={googlePlayUrl} target="_blank" rel="noreferrer" aria-label="Get Hezhin on Google Play">
+      <a className="store-button store-button-official" href={googlePlayUrl} target={sameWindow ? undefined : '_blank'} rel={sameWindow ? undefined : 'noreferrer'} aria-label="Get Hezhin on Google Play">
         <GooglePlayMark />
         <span><small>GET IT ON</small><strong>Google Play</strong></span>
       </a>
